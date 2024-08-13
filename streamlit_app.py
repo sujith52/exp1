@@ -6,7 +6,7 @@ st.write('Hello world!')
 
 import subprocess
 subprocess.run(['pip', 'install', 'beautifulsoup4', '--force-reinstall'])
-pip install pdfkit
+
 # Import necessary libraries
 import streamlit as st
 import requests
