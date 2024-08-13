@@ -4,8 +4,8 @@ st.title('Novel world')
 
 st.write('Hello world!')
 
-# Install necessary libraries
-!pip install streamlit requests beautifulsoup4 pdfkit
+!pip install beautifulsoup4 --force-reinstall
+from bs4 import BeautifulSoup
 
 # Import necessary libraries
 import streamlit as st
