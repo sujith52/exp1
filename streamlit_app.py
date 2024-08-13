@@ -6,6 +6,7 @@ st.write('Hello world!')
 
 import streamlit as st
 import requests
+pip install beautifulsoup4
 from bs4 import BeautifulSoup
 import pdfkit
 
