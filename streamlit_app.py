@@ -12,14 +12,11 @@ response = requests.get(novel_page_link)
 soup = BeautifulSoup(response.content, 'html.parser')
 
 # Find the text container on the page
-text_container = soup.find('div', {'class': 'text-container'})
+text_container = soup.find('div', {'class': 'chapter-content'})
 
 # Extract the text from the container
-text_container = soup.find('div', {'class': 'text-container'})
 if text_container is None:
     st.write("Unable to find text container on the page.")
 else:
     text = text_container.get_text()
     st.write(text)
-
-
