@@ -24,7 +24,7 @@ if st.button("Generate PDF"):
         else:
             st.write("Failed to retrieve the novel content")
     except Exception as e:
-        st.write(f"Error: {e.message}")
+        st.write(f"Error: {str(e)}")
 
 # HTML Content
 ## Generate HTML Content
