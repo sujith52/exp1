@@ -2,21 +2,26 @@ import streamlit as st
 import requests
 from bs4 import BeautifulSoup
 
-# Novel page link
-novel_page_link = "https://lightnovel.novelupdates.net/book/emperors-domination/chapter-1"
+# Create a title for your app
+st.title("Novel Text Extractor")
 
-# Send a GET request to the novel page
-response = requests.get(novel_page_link)
+# Create an input bar to take the novel link
+novel_page_link = st.text_input("Enter the novel page link:")
 
-# Parse the HTML content using BeautifulSoup
-soup = BeautifulSoup(response.content, 'html.parser')
+# Create a button to display the text
+if st.button("Extract Text"):
+    # Send a GET request to the novel page
+    response = requests.get(novel_page_link)
 
-# Find the text container on the page
-text_container = soup.find('div', {'class': 'chapter-content'})
+    # Parse the HTML content using BeautifulSoup
+    soup = BeautifulSoup(response.content, 'html.parser')
 
-# Extract the text from the container
-if text_container is None:
-    st.write("Unable to find text container on the page.")
-else:
-    text = text_container.get_text()
-    st.write(text)
+    # Find the text container on the page
+    text_container = soup.find('div', {'class': 'chapter-content'})
+
+    # Extract the text from the container
+    if text_container is None:
+        st.write("Unable to find text container on the page.")
+    else:
+        text = text_container.get_text()
+        st.write(text)
