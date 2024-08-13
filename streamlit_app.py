@@ -5,33 +5,36 @@ st.title('Novel world')
 st.write('Hello world!')
 
 import streamlit as st
+import requests
+from bs4 import BeautifulSoup
+import pdfkit
 
 # App title
-st.write("Novel Website")
+st.title("Novel Reading Website")
 
-# Introduction
-st.write("Welcome to our novel website!")
+# Novel link input
+link = st.text_input("Enter the novel link")
 
-# Novel chapters
-chapters = {
-    "Chapter 1": "Chapter 1 content",
-    "Chapter 2": "Chapter 2 content",
-    "Chapter 3": "Chapter 3 content"
-}
-
-# Select chapter
-chapter = st.selectbox("Select a chapter", list(chapters.keys()))
-
-# Display chapter content
-st.write(chapters[chapter])
-
-# Author information
-st.write("Author: [Your Name]")
-
-# Contact information
-st.write("Contact: [Your Email]")
-
-# Social media links
-st.write("Follow us on social media:")
-st.write("[Twitter](https://twitter.com/your_twitter_handle)")
-st.write("[Facebook](https://facebook.com/your_facebook_page)")
+# Generate PDF button
+if st.button("Generate PDF"):
+    try:
+        # Send a GET request to the link
+        response = requests.get(link)
+        
+        # Check if the request was successful
+        if response.status_code == 200:
+            # Parse the HTML content using BeautifulSoup
+            soup = BeautifulSoup(response.content, 'html.parser')
+            
+            # Extract the text from the HTML content
+            text = soup.get_text()
+            
+            # Generate PDF
+            pdf = pdfkit.from_string(text, False)
+            
+            # Display the PDF
+            st.download_button("Download PDF", pdf, "novel.pdf")
+        else:
+            st.write("Failed to retrieve the novel content")
+    except Exception as e:
+        st.write(f"Error: {e}")
