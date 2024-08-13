@@ -4,7 +4,7 @@ st.title('Novel world')
 
 st.write('Hello world!')
 
-!pip install beautifulsoup4 --force-reinstall
+pip install beautifulsoup4 --force-reinstall
 from bs4 import BeautifulSoup
 
 # Import necessary libraries
