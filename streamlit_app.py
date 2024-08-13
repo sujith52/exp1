@@ -4,8 +4,8 @@ st.title('Novel world')
 
 st.write('Hello world!')
 
-pip install beautifulsoup4 --force-reinstall
-from bs4 import BeautifulSoup
+import subprocess
+subprocess.run(['pip', 'install', 'beautifulsoup4', '--force-reinstall'])
 
 # Import necessary libraries
 import streamlit as st
