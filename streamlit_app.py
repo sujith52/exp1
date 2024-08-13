@@ -15,7 +15,11 @@ soup = BeautifulSoup(response.content, 'html.parser')
 text_container = soup.find('div', {'class': 'text-container'})
 
 # Extract the text from the container
-text = text_container.get_text()
+text_container = soup.find('div', {'class': 'text-container'})
+if text_container is None:
+    st.write("Unable to find text container on the page.")
+else:
+    text = text_container.get_text()
+    st.write(text)
 
-# Display the text on your Streamlit app
-st.write(text)
+
