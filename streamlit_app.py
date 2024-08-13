@@ -18,7 +18,7 @@ if st.button("Generate PDF"):
         if response.status_code == 200:
             soup = BeautifulSoup(response.content, 'html.parser')
             text = soup.get_text()
-            config = pdfkit.configuration(wkhtmltopdf='D:\\startup\\wkhtmltopdf\\bin\\wkhtmltopdf.exe')
+            config = pdfkit.configuration(wkhtmltopdf='D:\startup\wkhtmltopdf\bin\wkhtmltopdf.exe')
             pdf = pdfkit.from_string(text, False, configuration=config)
             st.download_button("Download PDF", pdf, "novel.pdf")
         else:
