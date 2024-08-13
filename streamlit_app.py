@@ -34,7 +34,13 @@ if st.button("Generate PDF"):
             text = soup.get_text()
             
             # Generate PDF
-            pdf = pdfkit.from_string(text, False)
+            import pdfkit
+
+# Specify the path to wkhtmltopdf
+            config = pdfkit.configuration(wkhtmltopdf='/path/to/wkhtmltopdf')
+
+# Generate PDF
+            pdf = pdfkit.from_string(text, False, configuration=config)
             
             # Display the PDF
             st.download_button("Download PDF", pdf, "novel.pdf")
